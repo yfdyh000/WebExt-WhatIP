@@ -3,7 +3,7 @@
 	"name": "whatIP",
 	"version": "0.1",
 	"author": "aokami",
-	"homepage_url": "https://github.com/aokami/whatIP",
+	"homepage_url": "https://github.com/aokami/WebExt-WhatIP",
 	"description": "Shows Ip of host with latest webExt tech.",
 
 	"permissions": [
