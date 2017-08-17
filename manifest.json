@@ -1,0 +1,24 @@
+{
+	"manifest_version": 2,
+	"name": "whatIP",
+	"version": "0.1",
+	"author": "aokami",
+	"homepage_url": "https://github.com/aokami/whatIP",
+	"description": "Shows Ip of host with latest webExt tech.",
+
+	"permissions": [
+		"webRequest", "tabs", "activeTab", "<all_urls>"
+	],
+	
+	"page_action": {
+		"browser_style": true,
+		"default_icon": {
+			"16": "icons/vX-16.png",
+			"32": "icons/vX-32.png"
+		}
+	},
+	
+	"background": {
+		"scripts": ["background.js"]
+	}
+}
