@@ -1,20 +1,22 @@
 // Whether to output log or not
-var log = false;
+let log = false;
 // Regular expressions for IPs
-var ipv4 = /(?:\d+\.){3}\d+/;
-var ipv6 = /(?:[\w*]:)*:[\w*]/;
+const ipv4 = /(?:\d+\.){3}\d+/;
+const ipv6 = /(?:[\w*]:)*:[\w*]/;
 
 // Handlers
 function handleRequest(requestInfo) {
+  let tabId = requestInfo.tabId;
+  let ip = requestInfo.ip;
   // Display ip as title (tooltip)
-  browser.pageAction.setTitle({ tabId: requestInfo.tabId, title: requestInfo.ip });
+  browser.pageAction.setTitle({ tabId, title: ip });
 
   // Changing icon whether it's IPv4
-  if (ipv4.test(requestInfo.ip)) {
+  if (ipv4.test(ip)) {
     if (log)
       console.log("ipv4");
     browser.pageAction.setIcon({
-      tabId: requestInfo.tabId,
+      tabId,
       path: {
         16: "icons/v4-16.png",
         32: "icons/v4-32.png"
@@ -22,11 +24,11 @@ function handleRequest(requestInfo) {
     });
   }
   // Or IPv6
-  else if (ipv6.test(requestInfo.ip)) {
+  else if (ipv6.test(ip)) {
     if (log)
       console.log("ipv6");
     browser.pageAction.setIcon({
-      tabId: requestInfo.tabId,
+      tabId,
       path: {
         16: "icons/v6-16.png",
         32: "icons/v6-32.png"
@@ -38,7 +40,7 @@ function handleRequest(requestInfo) {
     if (log)
       console.log("Unrecognized IP");
     browser.pageAction.setIcon({
-      tabId: requestInfo.tabId,
+      tabId,
       path: {
         16: "icons/vX-16.png",
         32: "icons/vX-32.png"
@@ -46,8 +48,8 @@ function handleRequest(requestInfo) {
     });
   }
 
-  // Toggle icon if it has dissapeared
-  browser.pageAction.show(requestInfo.tabId);
+  // Toggle icon if it has disappeared
+  browser.pageAction.show(ip);
 }
 
 function handleActivated(activeInfo) {
